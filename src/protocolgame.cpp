@@ -382,10 +382,7 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 		writeToOutputBuffer(opcodeMessage);
 	}
 
-	// Change packet verifying mode for QT clients
-	if (version >= 1111 && operatingSystem >= CLIENTOS_QT_LINUX && operatingSystem < CLIENTOS_OTCLIENT_LINUX) {
-		setChecksumMode(CHECKSUM_SEQUENCE);
-	}
+	setChecksumMode(CHECKSUM_SEQUENCE);
 
 	// Web login skips the character list request so we need to check the client version again
 	if (version < CLIENT_VERSION_MIN || version > CLIENT_VERSION_MAX) {
